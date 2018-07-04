@@ -1,0 +1,3 @@
+class CreateTwitterProfile < BaseService
+
+end

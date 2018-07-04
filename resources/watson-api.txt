@@ -1,0 +1,33 @@
+## docs
+https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile
+
+## credentials
+{
+  "url": "https://gateway.watsonplatform.net/personality-insights/api",
+  "username": "c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2",
+  "password": "AWqmJdx7Hbyz"
+}
+
+## example
+curl -X POST -u "c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2:AWqmJdx7Hbyz" --header "Content-Type: application/json" --header "Accept: application/json" --data-binary @profile.json "https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2017-10-13&consumption_preferences=true&raw_scores=true"
+
+## rails console
+```
+params = { contentItems: [] }
+c = FindTwitterUser.()
+l = c.user_timeline("dhh", count: 100)
+l.each do |t|
+  params[:contentItems] << {
+    content: t.text,
+    contenttype: "text/plain",
+    created: t.created_at.to_i,
+    id: t.id,
+    language: t.lang
+  }
+end
+
+url = "https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2017-10-13&consumption_preferences=true&raw_scores=true"
+headers = { "Accept" => "application/json" }
+resource = RestClient::Resource.new(url, user: "c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2", password: "AWqmJdx7Hbyz", headers: headers)
+response = resource.post(params.to_json, content_type: "application/json")
+```

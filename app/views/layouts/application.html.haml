@@ -8,4 +8,14 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    = yield
+    %header
+      .navbar.navbar-dark.bg-dark.box-shadow
+        .container.d-flex.justify-content-between
+          %a.navbar-brand.d-flex.align-items-center{:href => "#"}
+            %strong MusicRecommender
+    %main{:role => "main"}
+      = yield
+
+    %footer.text-muted
+      .container
+        MusicRecommender
