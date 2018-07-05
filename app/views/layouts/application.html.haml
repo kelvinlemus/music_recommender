@@ -6,14 +6,21 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
+    %script{:src => "https://cdn.plot.ly/plotly-latest.min.js"}
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"}
   %body
     %header
       .navbar.navbar-dark.bg-dark.box-shadow
         .container.d-flex.justify-content-between
-          %a.navbar-brand.d-flex.align-items-center{:href => "#"}
+          %a.navbar-brand.d-flex.align-items-center{:href => "/"}
             %strong MusicRecommender
+          %ul.navbar-nav.mr-auto
+            %li.nav-item
+              = link_to "Twitter Profiles", twitter_profiles_path, class: "nav-link"
+
     %main{:role => "main"}
+      - flash.each do |type, content|
+        = render 'shared/flash', type: type, content: content
       = yield
 
     %footer.text-muted

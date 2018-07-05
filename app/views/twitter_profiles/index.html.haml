@@ -1,0 +1,21 @@
+%section.text-center
+  .container
+    %br
+    %h3= "Twitter Profile List"
+
+    = link_to "Create Twitter Profile", new_twitter_profile_path
+
+    .row
+      - @twitter_profiles.each do |twitter_profile|
+        .col-2
+          .card
+            = image_tag twitter_profile.profile_image_uri, class: "card-img-top", style: "border-radius: 60px"
+            .card-body
+              %p
+                = "Username"
+                %strong= twitter_profile.username
+              %p
+                = "Name:"
+                %strong= twitter_profile.name
+              = link_to ">>> Music", twitter_profile_path(twitter_profile)
+            

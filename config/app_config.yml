@@ -1,0 +1,9 @@
+default: &default
+  watson_user: c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2
+  watson_password: AWqmJdx7Hbyz
+
+development:
+  <<: *default
+
+production:
+  <<: *default

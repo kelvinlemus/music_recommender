@@ -1,9 +1,27 @@
 class BaseService
-  attr_accessor :params, :result
+  class Result < Hash
+    def success!
+      @success = true
+    end
+
+    def success?
+      @success
+    end
+
+    def failure!
+      @failure = true
+    end
+
+    def failure?
+      @failure
+    end
+  end
+
+  attr_accessor :options, :result
 
   def initialize(options={})
     self.options = options
-    self.result = {}
+    self.result = Result.new
   end
 
   def self.call(options)

@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_200816) do
+ActiveRecord::Schema.define(version: 2018_07_05_052431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "personalities", force: :cascade do |t|
+    t.integer "twitter_profile_id"
+    t.string "name"
+    t.decimal "raw_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["twitter_profile_id"], name: "index_personalities_on_twitter_profile_id"
+  end
+
   create_table "twitter_profiles", force: :cascade do |t|
     t.string "username"
+    t.string "name"
+    t.string "user_twitter_id"
+    t.string "description"
+    t.string "lang"
+    t.string "uri"
+    t.string "profile_image_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["username"], name: "index_twitter_profiles_on_username"

@@ -1,0 +1,50 @@
+%section
+  .container
+    %br
+    = link_to "< Back", twitter_profiles_path, class: "float-right"
+
+    .clearfix
+    .row
+      .col-6
+        = image_tag @twitter_profile.profile_image_uri, style: "border-radius: 60px"
+        %p
+          = "Username"
+          %strong= @twitter_profile.username
+        %p
+          = "Name:"
+          %strong= @twitter_profile.name
+
+        = link_to "Twitter", @twitter_profile.uri, target: :_blank
+        %br
+      .col-6
+        %p
+          = "Description"
+          %br
+          %strong= @twitter_profile.description
+    %hr
+    .row
+      .col-3
+        %h5= "Personality"
+        %ul
+          - @twitter_profile.personalities.each do |personality|
+            %li= personality.name
+
+      .col-9
+
+        #js-plot
+
+    %hr
+    .row
+      .col-12
+        %h5= "Music"
+
+:javascript
+  document.addEventListener("turbolinks:load", function() {
+    var data = [{
+      values: #{@twitter_profile.personalities.map(&:raw_score)},
+      labels: #{@twitter_profile.personalities.map(&:name)},
+      type: 'pie'
+    }];
+
+    Plotly.newPlot("js-plot", data);
+  })
