@@ -14,7 +14,6 @@ class FetchWatsonPersonality < BaseService
       twitter_profile.personalities.create(personalities)
 
     rescue Exception => e
-      binding.pry
       self.result.failure!
     end
 
@@ -23,7 +22,10 @@ class FetchWatsonPersonality < BaseService
 private
   def get_personalities(response)
     parsed_response = JSON.parse(response)
-    personalities = parsed_response["personality"].select {|obj| obj["raw_score"] > 0.5}.map {|obj| { name: obj["name"], raw_score: obj["raw_score"] }}
+    personalities = select_valid_personalities(parsed_response["personality"]).map do |obj|
+      { name: obj["name"], raw_score: obj["raw_score"] }
+    end
+
     if personalities.blank?
       personalities = default_personalities
     end
@@ -36,5 +38,9 @@ private
       { name: "Conscientiousness", raw_score: 0.60 },
       { name: "Extraversion", raw_score: 0.60 }
     ]
+  end
+
+  def select_valid_personalities(personalities)
+    personalities.select {|obj| obj["raw_score"] > 0.5}
   end
 end

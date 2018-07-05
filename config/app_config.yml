@@ -1,6 +1,12 @@
 default: &default
+  twitter_consumer_key: bU4qomX1FzuxEmQmpgXd3ylpZ
+  twitter_consumer_secret: MGBbS9C1HHVhbIMuJVXZY3QQF6QKnUfEHe4lPzpMfmNp5LNp65
+  twitter_access_token: 1672449872-2Wt30x2Fcpr90kAoWtqHJY1ULp1WWjtBh0ZBlFp
+  twitter_access_token_secret: 3tdrKcQCoErNED0wbyJHSb6gXs7XNOluGEP6jXeIcFj84
   watson_user: c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2
   watson_password: AWqmJdx7Hbyz
+  lastfm_key: c47911e7b791ea40072ba2ac514bd097
+  lastfm_secret: 6a5e7129df5c84a63903ef6667fa3ef9
 
 development:
   <<: *default

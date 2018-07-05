@@ -31,3 +31,12 @@ headers = { "Accept" => "application/json" }
 resource = RestClient::Resource.new(url, user: "c0a56ff7-37d8-4e1e-b2c2-6337a9a187a2", password: "AWqmJdx7Hbyz", headers: headers)
 response = resource.post(params.to_json, content_type: "application/json")
 ```
+
+## personality and music genre
+```
+Openness => classical, blues, jazz, and folk
+Extraversion => rap, hip hop, soul, electronic, and dance
+Agreeableness => 3 top from upbeat, 3 random from genres on this list.
+Neuroticism => Country, pop
+Conscientiousness => 6 random from genres in this list
+```
