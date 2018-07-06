@@ -1,5 +1,9 @@
 # Music Recommender
 
-## TODO's
-- [] fetch twitter users
-- [] pass request in CURL to RestClient
+## Installing
+```
+bundle install
+config file: config/database.yml
+rails db:migrate
+rails s
+```
