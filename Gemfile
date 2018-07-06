@@ -10,6 +10,8 @@ gem 'rest-client', '2.0.2'
 gem 'simple_form', '4.0.1'
 gem "reform", "2.2.4"
 gem "reform-rails", "0.1.7"
+gem 'delayed_job_active_record', '4.1.3'
+gem 'daemons', '1.2.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

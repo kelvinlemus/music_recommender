@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_052431) do
+ActiveRecord::Schema.define(version: 2018_07_05_231516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
 
   create_table "personalities", force: :cascade do |t|
     t.integer "twitter_profile_id"
@@ -24,6 +39,18 @@ ActiveRecord::Schema.define(version: 2018_07_05_052431) do
     t.index ["twitter_profile_id"], name: "index_personalities_on_twitter_profile_id"
   end
 
+  create_table "recommended_musics", force: :cascade do |t|
+    t.integer "twitter_profile_id"
+    t.integer "personality_id"
+    t.string "tag"
+    t.string "album_name"
+    t.string "album_url"
+    t.string "album_artist_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["twitter_profile_id"], name: "index_recommended_musics_on_twitter_profile_id"
+  end
+
   create_table "twitter_profiles", force: :cascade do |t|
     t.string "username"
     t.string "name"
@@ -32,6 +59,7 @@ ActiveRecord::Schema.define(version: 2018_07_05_052431) do
     t.string "lang"
     t.string "uri"
     t.string "profile_image_uri"
+    t.string "music_recommender_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["username"], name: "index_twitter_profiles_on_username"

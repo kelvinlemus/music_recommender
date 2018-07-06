@@ -9,7 +9,7 @@ class TwitterProfilesController < ApplicationController
     if form.validate(params[:twitter_profile])
       result = CreateTwitterProfileService.(form: form)
       if result.success?
-        redirect_to new_twitter_profile_path and return
+        redirect_to twitter_profile_path(result[:model].id) and return
       else
         flash["notice"] = result["message"]
         render :new and return

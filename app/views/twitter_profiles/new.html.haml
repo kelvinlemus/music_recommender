@@ -1,5 +1,5 @@
 %section.jumbotron.text-center
   .container
     = simple_form_for form, url: twitter_profiles_path, as: :twitter_profile do |f|
-      = f.input :username, placeholder: "Twitter username, eg: dhh"
+      = f.input :username, placeholder: "Twitter username, eg: dhh", autofocus: true
       = f.button :submit, "Search"

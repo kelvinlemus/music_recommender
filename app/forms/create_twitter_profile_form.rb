@@ -6,6 +6,7 @@ class CreateTwitterProfileForm < Reform::Form
   property :lang
   property :profile_image_uri
   property :uri
+  property :music_recommender_status, default: "started"
 
   validates :username, presence: true
   validates_uniqueness_of :username

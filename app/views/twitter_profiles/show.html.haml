@@ -37,6 +37,24 @@
     .row
       .col-12
         %h5= "Music"
+        - unless @twitter_profile.music_recommender_status == "processed"
+          %p.alert.alert-primary
+            = "Recommended music is not ready, wait a moment please..."
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= "Personality"
+              %th= "Tag"
+              %th= "Album"
+              %th= "Artist"
+          %tbody
+            - @twitter_profile.recommended_musics.each do |recommended|
+              %tr
+                %td= recommended.personality_name
+                %td= recommended.tag
+                %td= link_to recommended.album_name, recommended.album_url, target: :_blank
+                %td= recommended.album_artist_name
 
 :javascript
   document.addEventListener("turbolinks:load", function() {

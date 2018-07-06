@@ -4,12 +4,15 @@ class CreateTwitterProfileService < BaseService
       user = twitter_client.user(self.options[:form].username)
       assign_attributes_to_form(user)
       self.options[:form].save
+      self.result[:model] = self.options[:form].model
 
       watson_params = get_watson_params_for(user)
       watson_result = FetchWatsonPersonality.(
         twitter_profile: self.options[:form].model,
         params: watson_params
       )
+
+      FetchRecommendedMusic.(twitter_profile: self.result[:model])
 
       self.result.success!
     rescue Twitter::Error::NotFound

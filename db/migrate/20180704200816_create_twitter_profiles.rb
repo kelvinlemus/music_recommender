@@ -8,6 +8,7 @@ class CreateTwitterProfiles < ActiveRecord::Migration[5.2]
       t.string :lang
       t.string :uri
       t.string :profile_image_uri
+      t.string :music_recommender_status
       t.timestamps
     end
   end

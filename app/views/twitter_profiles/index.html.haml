@@ -5,6 +5,8 @@
 
     = link_to "Create Twitter Profile", new_twitter_profile_path
 
+    %hr
+
     .row
       - @twitter_profiles.each do |twitter_profile|
         .col-2
@@ -18,4 +20,3 @@
                 = "Name:"
                 %strong= twitter_profile.name
               = link_to ">>> Music", twitter_profile_path(twitter_profile)
-            
