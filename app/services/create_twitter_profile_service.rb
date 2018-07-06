@@ -38,7 +38,7 @@ private
 
   def get_watson_params_for(user)
     _params = { contentItems: [] }
-    tweets = twitter_client.user_timeline(user.id, count: 100)
+    tweets = twitter_client.user_timeline(user.screen_name, count: 100)
     tweets.each do |tweet|
       _params[:contentItems] << {
         content: tweet.text,
